@@ -1,6 +1,6 @@
 package algorytmy.structures;
 
-public class MyList {
+public class MyList implements MyListInterface {
 
     private final int INITIAL_SIZE = 10;
 
@@ -29,6 +29,18 @@ public class MyList {
             }
             this.size++;
             this.array[index] = value;
+        }
+    }
+
+    public void addAll(MyListInterface myList) {
+        for (int i = 0; i < myList.getSize(); i++) {
+            this.add(myList.get(i));
+        }
+    }
+
+    public void addAll(int index, MyListInterface myList) {
+        for (int i = 0; i < myList.getSize(); i++) {
+            add(index + i, myList.get(i));
         }
     }
 
@@ -68,7 +80,7 @@ public class MyList {
         this.array[i2] = tmp;
     }
 
-    public MyList clone() {
+    public MyListInterface clone() {
         MyList tmpList = new MyList();
         tmpList.array = rewrite(new int[this.array.length]);
         tmpList.size = this.size;
